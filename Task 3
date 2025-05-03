@@ -1,9 +1,6 @@
 import random
 
-# A dictionary to hold user information like their name and favorite color
 user_info = {}
-
-# Predefined responses
 responses = {
     "greeting": ["Hello! How can I help you today?", "Hi there! What can I do for you today?"],
     "name": ["I am a chatbot created to assist you.", "I'm a friendly chatbot here to help!"],
@@ -13,35 +10,34 @@ responses = {
     "end": ["Goodbye! Have a great day!", "See you later! Take care!"]
 }
 
-# Function to handle basic responses based on user input
 def get_response(user_input):
     user_input = user_input.lower()
 
-    # Check for greeting
+    
     if any(greet in user_input for greet in ["hi", "hello", "hey"]):
         return random.choice(responses["greeting"])
     
-    # Check if the user asks for chatbot's name
+    
     elif "your name" in user_input:
         return random.choice(responses["name"])
     
-    # Check for color-related queries
+
     elif "color" in user_input or "favorite color" in user_input:
         return random.choice(responses["color"])
 
-    # Check if the user asks for the chatbot's age
+
     elif "how old" in user_input or "age" in user_input:
         return random.choice(responses["age"])
 
-    # Check for hobby-related questions
+
     elif "hobby" in user_input or "like to do" in user_input:
         return random.choice(responses["hobby"])
 
-    # Check for goodbye
+    
     elif any(goodbye in user_input for goodbye in ["bye", "goodbye", "see you"]):
         return random.choice(responses["end"])
 
-    # Handle user input about personal details like name or favorite color
+
     elif "my name is" in user_input:
         name = user_input.split("my name is")[-1].strip()
         user_info["name"] = name
@@ -55,22 +51,21 @@ def get_response(user_input):
     else:
         return "Sorry, I didn't understand that. Could you please rephrase?"
 
-# Main chat function
+
 def start_chat():
     print("Chatbot: Hello! I'm here to assist you. Type 'exit' to end the chat.")
     
     while True:
         user_input = input("You: ")
         
-        # Check if user wants to exit
+        
         if user_input.lower() == "exit":
             print("Chatbot: Goodbye! Have a great day!")
             break
         
-        # Get response from the chatbot based on user input
+        
         response = get_response(user_input)
         print(f"Chatbot: {response}")
 
-# Run the chatbot
 if __name__ == "__main__":
     start_chat()
